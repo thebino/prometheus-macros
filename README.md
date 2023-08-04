@@ -1,5 +1,9 @@
 # Prometheus Macros 
 
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/heat1q/prometheus-macros/rust.yml)
+![docs.rs](https://img.shields.io/docsrs/prometheus-macros)
+![Crates.io](https://img.shields.io/crates/d/prometheus-macros)
+
 `prometheus-macros` offers advanced macros for defining [`prometheus`](https://docs.rs/prometheus/latest/prometheus/) metrics.
 
 ## Motivation
