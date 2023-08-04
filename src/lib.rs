@@ -1,3 +1,41 @@
+//! `prometheus-macros` offers advanced macros for defining [`prometheus`] metrics.
+//!
+//! This crate extends [`prometheus`] by introducing declarative macros that minimize
+//! boilerplate during the declaration and initialization of metrics. Multiple metrics
+//! are often needed, as seen for example in contexts like HTTP request
+//! where one needs to declare distinct metrics for request count and request latency.
+//!
+//! Although [`prometheus`] already offers declarative macros for initializing individual
+//! metrics, it can still lead to significant boilerplate when declaring multiple metrics.
+//!
+//! # Example
+//!
+//! ```
+//! use prometheus::{IntGauge, HistogramVec};
+//! use prometheus_macros::composite_metric;
+//!
+//! composite_metric! {
+//!     struct CompositeMetric {
+//!         #[name = "custom_gauge"]
+//!         #[desc = "Example gauge metric"]
+//!         custom_gauge: IntGauge,
+//!         #[name = "custom_hist_vec"]
+//!         #[desc = "Example histogram vec"]
+//!         #[labels = ["foo", "bar"]]
+//!         #[buckets = [0.01, 0.1, 0.2]]
+//!         custom_hist_vec: HistogramVec,
+//!     }
+//! }
+//!
+//! let metric = CompositeMetric::register(prometheus::default_registry())
+//!     .expect("failed to register metrics to default registry");
+//! // access the metrics
+//! metric.custom_gauge().set(420);
+//! metric.custom_hist_vec().with_label_values(&["a", "b"]).observe(0.5);
+//! ```
+
+#![deny(missing_docs)]
+
 use prometheus::{
     self, Counter, CounterVec, Gauge, GaugeVec, Histogram, HistogramOpts, HistogramVec,
     IntCounterVec, IntGauge, IntGaugeVec, Opts as PrometheusOpts,
@@ -96,7 +134,7 @@ pub struct Opts<'a> {
 }
 
 impl<'a> Opts<'a> {
-    // Create a new generic metric option based name, helper text and optional labels.
+    /// Create a new generic metric option based name, helper text and optional labels.
     pub fn new(name: &'a str, desc: &'a str) -> Self {
         Self {
             name,
@@ -105,11 +143,13 @@ impl<'a> Opts<'a> {
         }
     }
 
+    /// Attaches labels to the options.
     pub fn with_labels(mut self, labels: &'a [&'a str]) -> Self {
         self.labels = labels.into();
         self
     }
 
+    /// Attaches buckets to the options.
     pub fn with_buckets(mut self, buckets: &'a [f64]) -> Self {
         self.buckets = buckets.into();
         self
