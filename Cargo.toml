@@ -1,10 +1,13 @@
 [package]
 name = "prometheus-macros"
-descrption = "Declare and compose metrics"
+description = "Macros for declaring prometheus metrics"
+documentation = "https://docs.rs/prometheus-metrics"
+repository = "https://github.com/heat1q/prometheus-macros"
+keywords = ["prometheus", "metrics"]
+license = "Apache-2.0"
+readme = "README.md"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 prometheus = { version = "0.13",  default-feature = false}
