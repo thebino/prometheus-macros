@@ -1,10 +1,15 @@
 # Prometheus Macros 
 
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/heat1q/prometheus-macros/rust.yml)
-![docs.rs](https://img.shields.io/docsrs/prometheus-macros)
-![Crates.io](https://img.shields.io/crates/d/prometheus-macros)
-
-`prometheus-macros` offers advanced macros for defining [`prometheus`](https://docs.rs/prometheus/latest/prometheus/) metrics.
+<a href="https://github.com/heat1q/prometheus-macros/actions/workflows/rust.yml">
+<img src="https://github.com/heat1q/prometheus-macros/actions/workflows/rust.yml/badge.svg" />
+</a>
+<a href="https://crates.io/crates/prometheus-macros">
+<img src="https://img.shields.io/crates/v/prometheus-macros.svg" />
+</a>
+<a href="https://docs.rs/prometheus-macros">
+<img src="https://docs.rs/prometheus-macros/badge.svg" />
+</a>
+<br/>
 
 ## Motivation
 
