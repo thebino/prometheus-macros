@@ -10,4 +10,4 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-prometheus = { version = "0.13",  default-feature = false}
+prometheus = { version = "0.14",  default-feature = false}
